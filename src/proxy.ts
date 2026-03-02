@@ -12,12 +12,12 @@ export async function proxy(request: NextRequest) {
     cookieSerializeOptions: serverConfig.cookieSerializeOptions,
     serviceAccount: serverConfig.serviceAccount,
     handleValidToken: async ({ token }, headers) => NextResponse.next({ request: { headers } }),
-    handleInvalidToken: async (reason) => redirectToLogin(request, { path: "/login", publicPaths: ["/login", "/register"] }),
-    handleError: async (error) => redirectToLogin(request, { path: "/login", publicPaths: ["/login", "/register"] }),
+    handleInvalidToken: async (reason) => redirectToLogin(request, { path: "/login", publicPaths: ["/login", "/register", "/"] }),
+    handleError: async (error) => redirectToLogin(request, { path: "/login", publicPaths: ["/login", "/register", "/"] }),
   });
   }
 
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/habits/:path*", "/analytics/:path*", "/settings/:path*", "/api/auth/login", "/api/auth/logout"],
+  matcher: ["/", "/habits/:path*", "/analytics/:path*", "/settings/:path*", "/api/auth/login", "/api/auth/logout"],
 };
