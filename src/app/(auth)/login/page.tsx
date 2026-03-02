@@ -98,9 +98,13 @@ export default function LoginPage() {
       const idToken = await result.user.getIdToken();
       await handleLoginResponse(idToken);
     } catch (error: any) {
-      console.error(error);
-      if (error.code !== "auth/popup-closed-by-user") {
-        toast.error("Google sign-in failed");
+      console.error('Google sign-in error:', error.code, error.message);
+      if (error.code === 'auth/popup-closed-by-user' || error.code === 'auth/cancelled-popup-request') {
+        // User closed popup, do nothing
+      } else if (error.code === 'auth/unauthorized-domain') {
+        toast.error('Domain not authorized. Please contact support.');
+      } else {
+        toast.error(`Google sign-in failed: ${error.message || error.code}`);
       }
     } finally {
       setIsGoogleLoading(false);

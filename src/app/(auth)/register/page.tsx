@@ -60,7 +60,7 @@ export default function RegisterPage() {
     });
 
     if (response.ok) {
-      router.push("/dashboard");
+      router.push("/habits");
       router.refresh();
     } else {
       throw new Error("Failed to set auth cookie");
@@ -131,9 +131,13 @@ export default function RegisterPage() {
       await handleLoginResponse(idToken);
       toast.success("Signed in with Google");
     } catch (error: any) {
-      console.error(error);
-      if (error.code !== "auth/popup-closed-by-user") {
-        toast.error("Google sign-in failed");
+      console.error('Google sign-in error:', error.code, error.message);
+      if (error.code === 'auth/popup-closed-by-user' || error.code === 'auth/cancelled-popup-request') {
+        // User closed popup, do nothing
+      } else if (error.code === 'auth/unauthorized-domain') {
+        toast.error('Domain not authorized. Contact support.');
+      } else {
+        toast.error(`Google sign-in failed: ${error.message || error.code}`);
       }
     } finally {
       setIsGoogleLoading(false);
