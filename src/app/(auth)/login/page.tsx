@@ -50,7 +50,7 @@ export default function LoginPage() {
 
   const handleLoginResponse = async (idToken: string) => {
     const response = await fetch("/api/auth/login", {
-      method: "GET",
+      method: "POST",
       headers: {
         Authorization: `Bearer ${idToken}`,
       },
@@ -59,7 +59,7 @@ export default function LoginPage() {
 
     if (response.ok) {
       toast.success("Logged in successfully");
-      router.push("/dashboard");
+      router.push("/habits");
       router.refresh();
     } else {
       throw new Error("Failed to set auth cookie");
