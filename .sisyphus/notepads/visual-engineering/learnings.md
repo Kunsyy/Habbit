@@ -1,0 +1,1 @@
+- Implemented loading states with Framer Motion and custom Skeleton layouts. Emphasized keeping page transitions simple (opacity fade) and ensuring skeletons match the structural layout of the component being loaded.

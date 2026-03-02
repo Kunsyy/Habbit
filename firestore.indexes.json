@@ -1,0 +1,22 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "habits",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "userId", "order": "ASCENDING" },
+        { "fieldPath": "order", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "habits",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "userId", "order": "ASCENDING" },
+        { "fieldPath": "reminderEnabled", "order": "ASCENDING" },
+        { "fieldPath": "reminderTime", "order": "ASCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

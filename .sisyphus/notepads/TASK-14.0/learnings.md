@@ -1,0 +1,3 @@
+- Created playwright.config.ts
+- Created tests/auth.spec.ts
+- Created vercel.json

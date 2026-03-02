@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@layer base {
+  /* Light */
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 262 80% 10%;
+    --primary: 263 70% 50%;  /* violet-600 */
+    --primary-foreground: 0 0% 100%;
+    --card: 0 0% 100%;
+    --border: 263 20% 90%;
+    --radius: 1rem;
+  }
+  /* Dark */
+  .dark {
+    --background: 262 30% 6%;    /* #0B090F */
+    --foreground: 0 0% 95%;
+    --primary: 263 68% 65%;      /* violet-500 */
+    --card: 262 25% 12%;         /* #1A1625 */
+    --border: 263 20% 20%;
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+}

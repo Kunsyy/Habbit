@@ -1,0 +1,3 @@
+- Successfully created root layout with all requested providers and components.
+- Used `next/dynamic` to ensure `react-canvas-confetti` is only rendered on the client to avoid SSR issues.
+- Correctly structured Next.js 14+ `metadata` and `viewport` exports.

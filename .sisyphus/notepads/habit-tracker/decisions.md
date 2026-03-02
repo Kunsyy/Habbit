@@ -1,0 +1,2 @@
+- Verified configuration exports adminDb and adminMessaging.
+- Chose 'admin' as the specific app name to isolate from potential default app conflicts in a serverless environment.

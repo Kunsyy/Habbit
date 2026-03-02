@@ -1,0 +1,1 @@
+Implemented registration page with Firebase Auth and Firestore. Followed login page styling with violet/fuchsia gradients and backdrop blur. Ensured onboardingComplete is set to false in Firestore user document.

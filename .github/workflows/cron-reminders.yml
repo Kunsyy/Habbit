@@ -1,0 +1,23 @@
+name: Habit Reminder Cron
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Every hour at :00
+  workflow_dispatch:       # Manual trigger for testing
+
+jobs:
+  send-reminders:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Trigger reminder endpoint
+        run: |
+          response=$(curl -s -o /dev/null -w "%{http_code}" \
+            -X POST "${{ secrets.APP_URL }}/api/cron/reminders" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            -H "Content-Type: application/json")
+          echo "Response: $response"
+          if [ "$response" != "200" ]; then
+            echo "Cron job failed with status $response"
+            exit 1
+          fi

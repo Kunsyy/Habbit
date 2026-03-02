@@ -1,0 +1,33 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Users can only read/write their own data
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      
+      match /fcmTokens/{tokenId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+      
+      match /earnedBadges/{badgeId} {
+        allow read: if request.auth != null && request.auth.uid == userId;
+        allow write: if false; // Cloud Function writes only
+      }
+    }
+    
+    match /habits/{habitId} {
+      allow read, write: if request.auth != null && request.auth.uid == resource.data.userId;
+      allow create: if request.auth != null && request.auth.uid == request.resource.data.userId;
+      
+      match /completions/{dateStr} {
+        allow read, write: if request.auth != null 
+          && request.auth.uid == get(/databases/$(database)/documents/habits/$(habitId)).data.userId;
+      }
+    }
+    
+    match /badges/{badgeId} {
+      allow read: if request.auth != null;
+      allow write: if false; // Admin writes only
+    }
+  }
+}

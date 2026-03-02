@@ -338,7 +338,7 @@ AUTH_COOKIE_SIGNATURE_KEYS=["key1","key2"]  # Random strings
 
 ### PHASE 0: Project Scaffold + Config
 
-#### TASK 0.1: Initialize Next.js project
+- [x] TASK 0.1: Initialize Next.js project
 **File**: `F:\Habbit\` (root)
 **Action**: Run `npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias "@/*"`. Accept all defaults. Then install all dependencies.
 
@@ -380,7 +380,7 @@ npm install -D @types/react-canvas-confetti
 
 ---
 
-#### TASK 0.2: Configure Tailwind with violet theme
+- [x] TASK 0.2: Configure Tailwind with violet theme
 **File**: `tailwind.config.ts`
 **Action**: Extend theme with violet CSS variables to match shadcn config. The `content` array must include `./src/**/*.{ts,tsx}`.
 
@@ -418,7 +418,7 @@ npm install -D @types/react-canvas-confetti
 
 ---
 
-#### TASK 0.3: Configure Next.js with Serwist PWA
+- [x] TASK 0.3: Configure Next.js with Serwist PWA
 **File**: `next.config.mjs`
 **Action**: Wrap config with `withSerwistInit`.
 
@@ -452,7 +452,7 @@ Key requirements:
 
 ---
 
-#### TASK 0.4: Create PWA manifest
+- [x] TASK 0.4: Create PWA manifest
 **File**: `public/manifest.json`
 **Content**:
 ```json
@@ -479,7 +479,7 @@ Key requirements:
 
 ---
 
-#### TASK 0.5: Create `.env.local.example`
+- [x] TASK 0.5: Create `.env.local.example`
 **File**: `.env.local.example`
 **Action**: Document all required environment variables (listed in Environment Variables section above) with comments explaining where to find each value. This file is committed to repo (no actual secrets).
 
@@ -489,7 +489,7 @@ Key requirements:
 
 ### PHASE 1: Firebase Setup
 
-#### TASK 1.1: Firebase client config
+- [x] TASK 1.1: Firebase client config
 **File**: `src/lib/firebase/config.ts`
 **Action**: Initialize Firebase app (guard against double-init with `getApps().length`). Export `auth`, `db` (Firestore), `messaging` (lazy, client-only).
 
@@ -517,7 +517,7 @@ if (typeof window !== "undefined") {
 
 ---
 
-#### TASK 1.2: Firebase Admin config
+- [x] TASK 1.2: Firebase Admin config
 **File**: `src/lib/firebase/admin.ts`
 **Action**: Initialize firebase-admin for Node.js API routes only.
 
@@ -545,7 +545,7 @@ export const adminMessaging = getMessaging(adminApp);
 
 ---
 
-#### TASK 1.3: next-firebase-auth-edge setup
+- [x] TASK 1.3: next-firebase-auth-edge setup
 **File**: `src/lib/auth-edge.ts`
 **Action**: Export server config for next-firebase-auth-edge.
 
@@ -606,7 +606,7 @@ export const config = {
 
 ---
 
-#### TASK 1.4: Firestore Security Rules
+- [x] TASK 1.4: Firestore Security Rules
 **File**: `firestore.rules`
 **Action**: Write security rules enforcing single-user ownership.
 
@@ -655,7 +655,7 @@ service cloud.firestore {
 
 ---
 
-#### TASK 1.5: Seed badge definitions
+- [x] TASK 1.5: Seed badge definitions
 **Action**: Create a one-time admin script `scripts/seed-badges.ts` that writes 8 badge documents to Firestore `/badges/` collection.
 
 **8 MVP Badges**:
@@ -674,7 +674,7 @@ service cloud.firestore {
 
 ### PHASE 2: Auth UI
 
-#### TASK 2.1: Login page
+- [x] TASK 2.1: Login page
 **File**: `src/app/(auth)/login/page.tsx`
 **Action**: Build login page with Google sign-in button and email/password form.
 
@@ -701,7 +701,7 @@ service cloud.firestore {
 
 ---
 
-#### TASK 2.2: Register page
+- [x] TASK 2.2: Register page
 **File**: `src/app/(auth)/register/page.tsx`
 **Action**: Register page with name, email, password fields.
 
@@ -711,7 +711,7 @@ service cloud.firestore {
 
 ---
 
-#### TASK 2.3: useAuth hook
+- [x] TASK 2.3: useAuth hook
 **File**: `src/hooks/useAuth.ts`
 **Action**: Firebase `onAuthStateChanged` listener wrapped in hook. Returns `{ user, loading, signOut }`.
 
@@ -730,7 +730,7 @@ useEffect(() => {
 
 ### PHASE 3: Core Data Layer
 
-#### TASK 3.1: Firestore habit operations
+- [x] TASK 3.1: Firestore habit operations
 **File**: `src/lib/firestore/habits.ts`
 **Action**: Pure functions for habit CRUD (no hooks, just Firestore calls).
 
@@ -776,7 +776,7 @@ export function getMonthDateStrings(year: number, month: number, timezone: strin
 
 ---
 
-#### TASK 3.2: useHabits hook
+- [x] TASK 3.2: useHabits hook
 **File**: `src/hooks/useHabits.ts`
 **Action**: Real-time Firestore subscription for user's habits.
 
@@ -813,7 +813,7 @@ export function useTodayCompletions(habitIds: string[]) {
 
 ---
 
-#### TASK 3.3: User profile operations
+- [x] TASK 3.3: User profile operations
 **File**: `src/lib/firestore/users.ts`
 ```typescript
 export async function createUserProfile(user: FirebaseUser): Promise<void>
@@ -829,7 +829,7 @@ export function subscribeToUserProfile(userId: string, callback: (profile: UserP
 
 ### PHASE 4: Cloud Function (Streak + XP + Badges)
 
-#### TASK 4.1: Firebase Cloud Function for streak + gamification
+- [x] TASK 4.1: Firebase Cloud Function for streak + gamification
 **File**: `functions/src/index.ts`
 **Action**: Cloud Function triggered on completion document creation.
 
@@ -912,7 +912,7 @@ async function checkAndGrantBadges(db, userId, habitId, streak, totalCompletions
 
 ### PHASE 5: Dashboard + Habit UI
 
-#### TASK 5.1: Root layout with providers
+- [x] TASK 5.1: Root layout with providers
 **File**: `src/app/layout.tsx`
 **Action**: Set up all providers in correct order.
 
@@ -927,7 +927,7 @@ async function checkAndGrantBadges(db, userId, habitId, streak, totalCompletions
 
 ---
 
-#### TASK 5.2: Dashboard layout (sidebar + bottom nav)
+- [x] TASK 5.2: Dashboard layout (sidebar + bottom nav)
 **File**: `src/app/(dashboard)/layout.tsx`
 **Action**: Responsive layout with sidebar on desktop, bottom tab nav on mobile.
 
@@ -948,7 +948,7 @@ async function checkAndGrantBadges(db, userId, habitId, streak, totalCompletions
 
 ---
 
-#### TASK 5.3: Dashboard home page (today's habits)
+- [x] TASK 5.3: Dashboard home page (today's habits)
 **File**: `src/app/(dashboard)/page.tsx`
 **Action**: Today's habit check-in view.
 
@@ -981,7 +981,7 @@ async function checkAndGrantBadges(db, userId, habitId, streak, totalCompletions
 
 ---
 
-#### TASK 5.4: Habit CRUD pages
+- [x] TASK 5.4: Habit CRUD pages
 **File**: `src/app/(dashboard)/habits/page.tsx`
 **Action**: All habits list with add button.
 
@@ -1040,7 +1040,7 @@ const habitSchema = z.object({
 
 ### PHASE 6: Onboarding Wizard
 
-#### TASK 6.1: Onboarding wizard (3-step modal)
+- [x] TASK 6.1: Onboarding wizard (3-step modal)
 **File**: `src/components/onboarding/OnboardingWizard.tsx`
 **Action**: Full-screen dialog overlay shown to users with `onboardingComplete: false`.
 
@@ -1078,7 +1078,7 @@ const habitSchema = z.object({
 
 ### PHASE 7: Push Notifications
 
-#### TASK 7.1: useFCM hook
+- [x] TASK 7.1: useFCM hook
 **File**: `src/hooks/useFCM.ts`
 **Action**: FCM token management hook.
 
@@ -1124,7 +1124,7 @@ function getDeviceInfo(): string {
 
 ---
 
-#### TASK 7.2: Cron reminder route handler
+- [x] TASK 7.2: Cron reminder route handler
 **File**: `src/app/api/cron/reminders/route.ts`
 **Action**: POST endpoint called by GitHub Actions every hour.
 
@@ -1179,7 +1179,7 @@ export async function POST(request: Request) {
 
 ---
 
-#### TASK 7.3: GitHub Actions cron workflow
+- [x] TASK 7.3: GitHub Actions cron workflow
 **File**: `.github/workflows/cron-reminders.yml`
 **Content**:
 ```yaml
@@ -1218,7 +1218,7 @@ jobs:
 
 ### PHASE 8: Analytics
 
-#### TASK 8.1: Analytics page
+- [x] TASK 8.1: Analytics page
 **File**: `src/app/(dashboard)/analytics/page.tsx`
 **Action**: Analytics dashboard.
 
@@ -1248,7 +1248,7 @@ jobs:
 
 ### PHASE 9: Gamification UI
 
-#### TASK 9.1: XP + Level + Badges display
+- [x] TASK 9.1: XP + Level + Badges display
 **File**: `src/components/gamification/XPToast.tsx`
 **Action**: Toast that appears when XP is earned. Subscribes to Firestore `users/{uid}.xp` changes and shows "+10 XP" toast when value increases.
 
@@ -1271,7 +1271,7 @@ jobs:
 
 ### PHASE 10: Settings
 
-#### TASK 10.1: Settings page
+- [x] TASK 10.1: Settings page
 **File**: `src/app/(dashboard)/settings/page.tsx`
 **Action**: User preferences page.
 
@@ -1292,7 +1292,7 @@ jobs:
 
 ### PHASE 11: Polish + Accessibility
 
-#### TASK 11.1: Loading states + skeletons
+- [x] TASK 11.1: Loading states + skeletons
 **Action**: Ensure every async operation has a skeleton or spinner.
 - HabitCard skeleton (pulse animation matching card shape)
 - Analytics page skeleton (heatmap placeholder + stat card placeholders)
@@ -1302,7 +1302,7 @@ jobs:
 
 ---
 
-#### TASK 11.2: Error boundaries + empty states
+- [x] TASK 11.2: Error boundaries + empty states
 **Action**: 
 - Add React ErrorBoundary around habit list and analytics sections
 - Empty state for: no habits created, no completions this week, no badges earned
@@ -1311,7 +1311,7 @@ jobs:
 
 ---
 
-#### TASK 11.3: Accessibility audit
+- [x] TASK 11.3: Accessibility audit
 **Action**:
 - All interactive elements have `aria-label` or visible label
 - Color contrast ratio ≥ 4.5:1 for all text (violet-600 on white, white on violet-600)
@@ -1323,7 +1323,7 @@ jobs:
 
 ---
 
-#### TASK 11.4: Meta + SEO
+- [x] TASK 11.4: Meta + SEO
 **Action**:
 - `src/app/layout.tsx`: Set `<title>Habbit — Premium Habit Tracker</title>`
 - viewport meta: `width=device-width, initial-scale=1, viewport-fit=cover`
@@ -1336,7 +1336,7 @@ jobs:
 
 ### PHASE 12: Testing
 
-#### TASK 12.1: Unit tests
+- [x] TASK 12.1: Unit tests
 **Action**: Jest + React Testing Library.
 
 Tests to write:
@@ -1349,7 +1349,7 @@ Tests to write:
 
 ---
 
-#### TASK 12.2: E2E Playwright tests
+- [x] TASK 12.2: E2E Playwright tests
 **File**: `playwright/` directory
 
 Tests:
@@ -1362,7 +1362,7 @@ Tests:
 
 ---
 
-#### TASK 12.3: Lighthouse PWA audit
+- [x] TASK 12.3: Lighthouse PWA audit
 **Action**: After Vercel deployment, run:
 ```bash
 npx lighthouse https://[your-app].vercel.app \
@@ -1381,7 +1381,7 @@ npx lighthouse https://[your-app].vercel.app \
 
 ### PHASE 13: Deployment
 
-#### TASK 13.1: Vercel deployment setup
+- [x] TASK 13.1: Vercel deployment setup
 **Action**:
 1. Install Vercel CLI: `npm i -g vercel`
 2. `vercel login`
@@ -1411,7 +1411,7 @@ npx lighthouse https://[your-app].vercel.app \
 
 ---
 
-#### TASK 13.2: Firebase Cloud Function deployment
+- [x] TASK 13.2: Firebase Cloud Function deployment
 **Action**:
 1. `cd functions && npm install`
 2. `firebase deploy --only functions`
@@ -1421,7 +1421,7 @@ npx lighthouse https://[your-app].vercel.app \
 
 ---
 
-#### TASK 13.3: GitHub Actions secrets setup
+- [x] TASK 13.3: GitHub Actions secrets setup
 **Action**: In GitHub repo Settings → Secrets:
 - Add `APP_URL`: production Vercel URL
 - Add `CRON_SECRET`: same value as Vercel env var

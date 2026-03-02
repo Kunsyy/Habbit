@@ -1,0 +1,3 @@
+- Use inline action buttons instead of shadcn/ui DropdownMenu for quick actions when the component isn't already installed, keeping the bundle smaller and the experience simpler.
+- `framer-motion` layout animations make lists look very polished when items are checked/unchecked or appear/disappear.
+- Using `Intl.DateTimeFormat` for dates is standard and removes dependency on date-fns for simple usages.
